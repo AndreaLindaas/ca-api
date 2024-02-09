@@ -7,7 +7,10 @@ const db = new sqlite3.Database(
 );
 
 const emojis = require("./emojis");
-
+const register = require("./register");
+const wineNight = require("./wine-night");
+const wineTasting = require("./wine-tasting");
+const wine = require("./wine");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -33,6 +36,10 @@ router.get("/products", (req, res) => {
     });
   });
 });
-router.use("/emojis", emojis);
 
+router.use("/emojis", emojis);
+router.use("/register", register);
+router.use("/wine-nights", wineNight);
+router.use("/wine-tasting", wineTasting);
+router.use("/wine", wine);
 module.exports = router;
