@@ -9,7 +9,7 @@ const db = new sqlite3.Database(
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  db.all("SELECT * FROM wine_nights", (err, rows) => {
+  db.all("SELECT * FROM wine_night", (err, rows) => {
     if (err) {
       console.log("Error running sql:" + err);
       res.status(500);
@@ -26,11 +26,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { participants, place, date } = req.body;
+  const { participants, location, date } = req.body;
 
   db.run(
-    "INSERT INTO wine_nights (participants, place, date) VALUES (?, ?, ?)",
-    [participants, place, date],
+    "INSERT INTO wine_night (participants, location, date) VALUES (?, ?, ?)",
+    [participants, location, date],
     function cb(err) {
       if (err) {
         console.log(`Error running sql: ${err}`);
@@ -43,6 +43,52 @@ router.post("/", (req, res) => {
 
       res.json({
         message: `wine night ${this.lastID} added`,
+      });
+    }
+  );
+});
+
+// sletter i postman men ikke i pocketbase
+
+router.delete("/", (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+
+  db.run("DELETE FROM wine_night WHERE id = ?", [id], function cb(err) {
+    if (err) {
+      console.log(`Error running sql: ${err}`);
+
+      res.status(500);
+      res.json({
+        message: "Internal Server Error",
+      });
+    }
+
+    res.json({
+      message: `wine night ${id} deleted`,
+    });
+  });
+});
+
+/***** Get MY wine nights */
+router.get("/me", (req, res) => {
+  const { participant } = req.query;
+  console.log(participant);
+  db.all(
+    "SELECT * FROM wine_night WHERE participants LIKE ?",
+    [`%${participant}%`],
+    (err, rows) => {
+      if (err) {
+        console.log("Error running sql:" + err);
+        res.status(500);
+        res.json({
+          message: "Internal Server Error",
+        });
+      }
+      res.json({
+        message: "list of wine nights",
+        // data: the data from the database
+        data: rows,
       });
     }
   );
