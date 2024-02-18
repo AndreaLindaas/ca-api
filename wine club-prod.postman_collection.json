@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "c724333f-8d8f-4e81-845f-dbfa66d1837f",
+		"name": "wine club-prod",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25844161"
+	},
+	"item": [
+		{
+			"name": "wine night",
+			"item": [
+				{
+					"name": "add wine night",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participants\": \"ole@gmail.com\",\n    \"location\": \"ski\",\n    \"date\": \"2024-02-28 12:00:00\"\n   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-night",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-night"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all wine nights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-night",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-night"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MY wine nights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-night/me?participant=ole@gmail.com",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-night",
+								"me"
+							],
+							"query": [
+								{
+									"key": "participant",
+									"value": "ole@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wine night",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-night/wine-night?id=ra158b6b0c12099",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-night",
+								"wine-night"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "ra158b6b0c12099"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete wine night",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"r51e11fcf7e45f1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-night",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-night"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wine tasting",
+			"item": [
+				{
+					"name": "wine tasting",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participant\": \"ole@gmail.com\",\n    \"note\": \"good\",\n    \"rating\": \"10\",\n    \"wine_night_id\":\"ra71f2682a56d0f\",\n    \"wine_id\":\"r472b33dcc0cd77\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-tasting",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-tasting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wine tastings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-tasting",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-tasting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wine tastings for specific wine night",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine-tasting/wine-tasting?wine_night_id=ra158b6b0c12099",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine-tasting",
+								"wine-tasting"
+							],
+							"query": [
+								{
+									"key": "wine_night_id",
+									"value": "ra158b6b0c12099"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wine",
+			"item": [
+				{
+					"name": "add wine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Lindemann\",\n    \"type\": \"white\",\n    \"year\": \"2020\",\n    \"country\": \"Germany\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all wines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wine",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"r05503b78a89725\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ca-api-aup4.onrender.com/api/v1/wine",
+							"protocol": "https",
+							"host": [
+								"ca-api-aup4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wine"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
