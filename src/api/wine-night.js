@@ -52,7 +52,6 @@ router.post("/", (req, res) => {
 
 router.delete("/", (req, res) => {
   const { id } = req.body;
-  console.log(id);
 
   db.run("DELETE FROM wine_night WHERE id = ?", [id], function cb(err) {
     if (err) {
@@ -73,7 +72,7 @@ router.delete("/", (req, res) => {
 /***** Get MY wine nights */
 router.get("/me", (req, res) => {
   const { participant } = req.query;
-  console.log(participant);
+
   db.all(
     "SELECT * FROM wine_night WHERE participants LIKE ?",
     [`%${participant}%`],
@@ -92,6 +91,25 @@ router.get("/me", (req, res) => {
       });
     }
   );
+});
+
+/***** Get MY wine night with id */
+router.get("/wine-night", (req, res) => {
+  const { id } = req.query;
+  db.all("SELECT * FROM wine_night WHERE id = ?", [id], (err, rows) => {
+    if (err) {
+      console.log("Error running sql:" + err);
+      res.status(500);
+      res.json({
+        message: "Internal Server Error",
+      });
+    }
+    res.json({
+      message: "wine night",
+      // data: the data from the database
+      data: rows,
+    });
+  });
 });
 
 module.exports = router;

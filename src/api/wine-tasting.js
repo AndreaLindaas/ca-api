@@ -25,11 +25,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { participant, note, rating } = req.body;
+  const { participant, note, rating, wine_night_id, wine_id } = req.body;
 
   db.run(
-    "INSERT INTO wine_tasting (participant, note, rating) VALUES (?, ?, ?)",
-    [participant, note, rating],
+    "INSERT INTO wine_tasting (participant, note, rating, wine_night_id, wine_id) VALUES (?, ?, ?, ?, ?)",
+    [participant, note, rating, wine_night_id, wine_id],
     function cb(err) {
       if (err) {
         console.log(`Error running sql: ${err}`);
@@ -42,6 +42,29 @@ router.post("/", (req, res) => {
 
       res.json({
         message: `wine tasting ${this.lastID} added`,
+      });
+    }
+  );
+});
+
+// /all winetastings for  one wine night/
+router.get("/wine-tasting", (req, res) => {
+  const { wine_night_id } = req.query;
+  db.all(
+    "SELECT * FROM wine_tasting WHERE wine_night_id = ?",
+    [wine_night_id],
+    (err, rows) => {
+      if (err) {
+        console.log("Error running sql:" + err);
+        res.status(500);
+        res.json({
+          message: "Internal Server Error",
+        });
+      }
+      res.json({
+        message: "list of wine tastings",
+        // data: the data from the database
+        data: rows,
       });
     }
   );

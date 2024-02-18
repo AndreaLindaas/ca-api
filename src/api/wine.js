@@ -48,7 +48,7 @@ router.post("/", (req, res) => {
 });
 
 router.delete("/", (req, res) => {
-  const { id } = req.query;
+  const { id } = req.body;
 
   db.run("DELETE FROM wine WHERE id = ?", [id], (err) => {
     if (err) {
