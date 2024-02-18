@@ -1,53 +1,42 @@
-# Express API Starter
+# Wine Night API
 
-How to use this template:
+### Description
 
-```sh
-npx create-express-api --directory my-api-name
-```
+This API is for an app for hosting and participating in wine tasting nights. The API is really simple, allowing users to create a wine night, create wine tastings and add wines to the database.
 
-Includes API Server utilities:
+### Technical
 
-* [morgan](https://www.npmjs.com/package/morgan)
-  * HTTP request logger middleware for node.js
-* [helmet](https://www.npmjs.com/package/helmet)
-  * Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
-* [dotenv](https://www.npmjs.com/package/dotenv)
-  * Dotenv is a zero-dependency module that loads environment variables from a `.env` file into `process.env`
-* [cors](https://www.npmjs.com/package/cors)
-  * CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+The backend is PocketBase.
+API is created with Express API Starter.
+There is no authentication.
+Production API running at render.com.
 
-Development utilities:
+### API
 
-* [nodemon](https://www.npmjs.com/package/nodemon)
-  * nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
-* [eslint](https://www.npmjs.com/package/eslint)
-  * ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
-* [jest](https://www.npmjs.com/package/jest)
-  * Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
-* [supertest](https://www.npmjs.com/package/supertest)
-  * HTTP assertions made easy via superagent.
+The API is documented and usable with Postman. Repo is containing the postman collection file in JSON format. This file can be imported into postman to do API calls to production API.
 
-## Setup
+### API endpoint description
 
-```
-npm install
-```
+#### Wine night
 
-## Lint
+[POST] add wine night: used to create a wine night. This should be done by the host. Add participant emails as a comma separated list, location and date to body data.
+[GET] All wine nights: fetched all wine nights
+[GET] MY wine nights: fetches all wine nights based on query parameter ?participant=
+[GET] Wine night: fetch specific wine night based on query paramter ?id=
+[DELETE] Delete: deletes wine night with ID given in body.
 
-```
-npm run lint
-```
+#### Wine tasting
 
-## Test
+Wine tastings have IDs connecting them to a wine night and a wine. It also includes information about who did the tasting, rating and notes.
 
-```
-npm test
-```
+[POST] wine tasting: adds a new wine tasting
+[GET] wine tastings: fetches all wine tastings
+[GET] wine tasting for specific wine night: gets all wine tastings for a single wine night by query parameter ?wine_night_id=
 
-## Development
+#### Wine
 
-```
-npm run dev
-```
+Endpoints to add, delete and list wines in database.
+
+[POST] add wine: adds wine to database.
+[GET] all wines: Gets all wines from database
+[DEL] delete wine: deletes wine from database based on given id in body.
